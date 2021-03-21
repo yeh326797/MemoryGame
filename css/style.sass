@@ -1,0 +1,113 @@
+$colorRed: #FF5353
+$colorYellow: #FFC429
+$colorBlue: #5980C1
+$colorWhite: #FBE9B7
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap')
+
+@mixin size ($w,$h:$w)
+    width: $w
+    height: $h
+
+html,body
+    font-family: "roboto"
+    background-color: #232526
+    display: flex
+    justify-content: center
+    align-items: center
+    flex-direction: column
+    +size(100%)
+    margin: 0
+    padding: 0
+    border: 5px solid rgba(white,0.05)
+    box-sizing: border-box
+    transition: 0.5s
+
+    &:active
+        transition: 0s
+        border: 5px solid rgba(white,0.1)
+        
+
+.infos
+    color: white
+    position: absolute
+    left: 40px
+    top: 40px
+    h1
+        margin-top: 0
+        margin-bottom: 0
+        font-size: 40px
+        letter-spacing: 1px
+        line-height: 1.2
+    h3
+        font-weight: 500
+        color: $colorRed
+
+.blocks    
+    .row
+        display: flex
+    .block
+        +size(100px)
+        display: flex
+        justify-content: center
+        align-items: center
+        transition: 0.4s
+        cursor: pointer
+        margin: 12px
+        
+        @mixin setBlockColor($color)
+            box-shadow: 0px 0px 35px rgba($color,0.2) inset, 0px 0px 30px rgba($color,0.2)
+            background-color: transparent
+            border: 1px solid lighten($color,5)
+            &:hover
+                background-color: rgba($color,0.3)
+                box-shadow: 0px 0px 35px  rgba($color,0.2)
+            &:active, &.active
+                background-color: $color
+                box-shadow: 0px 0px 35px $color
+        
+        &:active, &.active
+          transition: 0s  
+          background-color: #fff
+          color: black
+
+        &.block1
+            +setBlockColor($colorRed)
+        &.block2
+            +setBlockColor($colorYellow)
+        &.block3
+            +setBlockColor($colorBlue)
+        &.block4
+            +setBlockColor($colorWhite)
+
+.inputStatus
+    margin-top: 10px
+    margin-left: 10px
+    height: 10px
+    .circle
+        +size(6px)
+        display: inline-block
+        background-color: white
+        opacity: 0.3
+        margin: 5px
+        border-radius: 50%
+        &.correct
+            opacity: 1
+    &.correct .circle
+        background-color: $colorBlue
+    &.wrong .circle
+        background-color: $colorRed
+
+button
+    margin-top: 30px
+    width: 120px
+    background-color: transparent
+    border: 1px solid white
+    padding: 10px 5px
+    color: white
+    border-radius: 20px
+    outline: none
+    &:hover
+        background-color: #fff
+        color: black
+        transition: 0.3s
